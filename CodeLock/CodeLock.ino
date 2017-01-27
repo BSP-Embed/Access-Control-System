@@ -67,7 +67,7 @@ void loop() {
                             OldPwdFlag = ChngPwdFlag = FALSE;
                             WritePwd(TempPwd, PWD_ADDR);
                             Beep(3,100); 
-                            
+                            CopyPwd();
                           }
                           else if (VeriPwd()) 
                             if (ChngPwdFlag) {
@@ -87,6 +87,14 @@ void loop() {
     EncodeFlag = FALSE;
     Beep(1, 10);
   }
+}
+/**************************************/
+/* Copy  Password From TEMP to PWD    */
+/**************************************/
+uint8_t CopyPwd(void) {
+  uint8_t i;
+  for (i = 0; i < MAX_CODE; i++)
+    Pwd[i] = TempPwd[i];
 }
 /**************************************/
 /* Verify Password                    */
